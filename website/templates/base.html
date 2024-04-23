@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -10,7 +9,19 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.7.1.min.css"
 		/>
-		<title>{% block title %}{% endblock %}</title>
+		<title>{% block title %}Notes{% endblock %}</title>
 	</head>
-	<body></body>
+	<body>
+		<section>
+			<nav>
+				<ul>
+					<li><a id="home" href="/">Home</a></li>
+					<li><a id="login" href="/auth/login">Login</a></li>
+					<li><a id="register" href="/auth/register">Register</a></li>
+					<li><a id="logout" href="/auth/logout">Logout</a></li>
+				</ul>
+			</nav>
+			<article>{% block content %}{% endblock %}</article>
+		</section>
+	</body>
 </html>
