@@ -13,25 +13,32 @@ def login():
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
+    message = {"text": "", "category": ""}
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
         password_confirmation = request.form.get("password2")
 
         if len(email) < 4:
-            return flash(
-                "Email address must be at least 4 characters.", category="error"
-            )
+            flash("Email address must be at least 4 characters.", category="error")
+            message["text"] = "Email address must be at least 4 characters"
+            message["category"] = "error"
 
         if len(password) < 5:
-            return flash("Password must be at least 5 characters", category="error")
+            flash("Password must be at least 5 characters", category="error")
+            message["text"] = "Password must be at least 5 characters"
+            message["category"] = "error"
 
         if password != password_confirmation:
-            return flash("Passwords do not match.", category="error")
+            flash("Passwords do not match.", category="error")
+            message["text"] = "Passwords do not match."
+            message["category"] = "error"
 
-        return flash("Account created!", category="success")
+        flash("Account created!", category="success")
+        message["text"] = "Account created!"
+        message["category"] = "success"
 
-    return render_template("register.html")
+    return render_template("register.html", **message)
 
 
 @auth.route("/logout")

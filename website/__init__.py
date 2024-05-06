@@ -1,6 +1,10 @@
 from flask import Flask
 from .views import views
 from .auth import auth
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+DB_NAME = "database.db"
 
 
 def create_app():
